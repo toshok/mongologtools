@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/tmc/mongologtools/parser"
+	"github.com/toshok/mongologtools/parser"
 )
 
 func ExampleParseLogLine() {

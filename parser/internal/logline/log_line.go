@@ -2,7 +2,7 @@
 
 package logline
 
-import "github.com/tmc/mongologtools/parser/internal/logdoc"
+import "github.com/toshok/mongologtools/parser/internal/logdoc"
 
 func ParseLogLine(input string) (map[string]interface{}, error) {
 	p := logLineParser{Buffer: input}

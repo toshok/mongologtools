@@ -6,7 +6,7 @@ import (
 	"io"
 	"log"
 
-	"github.com/tmc/mongologtools/parser"
+	"github.com/toshok/mongologtools/parser"
 )
 
 func ingest(r io.Reader, w io.Writer) error {

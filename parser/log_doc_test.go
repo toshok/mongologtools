@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/tmc/mongologtools/parser/internal/logdoc"
+	"github.com/toshok/mongologtools/parser/internal/logdoc"
 )
 
 func ExampleConvertLogToExtended() {
