@@ -646,31 +646,11 @@ func (p *nonPegLogLineParser) readJSONIdentifier() (string, error) {
 }
 
 func (p *nonPegLogLineParser) readUpcaseIdentifier() (string, error) {
-	startPosition := p.position
-	endPosition := startPosition
-	for !unicode.IsSpace(p.runes[endPosition]) && p.runes[endPosition] != endRune {
-		if p.runes[endPosition] != '_' && !unicode.IsDigit(p.runes[endPosition]) && (!unicode.IsLetter(p.runes[endPosition]) || !unicode.IsUpper(p.runes[endPosition])) {
-			return "", errors.New(fmt.Sprintf("rune '%s' is illegal in this context", string([]rune{p.runes[endPosition]})))
-		}
-		endPosition++
-	}
-
-	p.position = endPosition
-	return string(p.runes[startPosition:endPosition]), nil
+	return p.readWhile([]interface{}{unicode.Upper, unicode.Digit, '_'})
 }
 
 func (p *nonPegLogLineParser) readAlphaIdentifier() (string, error) {
-	startPosition := p.position
-	endPosition := startPosition
-	for !unicode.IsSpace(p.runes[endPosition]) && p.runes[endPosition] != endRune {
-		if !unicode.IsLetter(p.runes[endPosition]) {
-			return "", errors.New(fmt.Sprintf("rune '%s' is illegal in this context", string([]rune{p.runes[endPosition]})))
-		}
-		endPosition++
-	}
-
-	p.position = endPosition
-	return string(p.runes[startPosition:endPosition]), nil
+	return p.readWhile([]interface{}{unicode.Letter, unicode.Digit, '_'})
 }
 
 func (p *nonPegLogLineParser) readUntil(untilRangeTable *unicode.RangeTable) (string, error) {
